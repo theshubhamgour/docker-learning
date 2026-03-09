@@ -799,3 +799,112 @@ Docker will **not restart the container** if:
 
 This policy is commonly used for **batch jobs, workers, and
 error‑recovery scenarios**.
+
+
+# Docker `--rm` Option (Not a Restart Policy)
+
+## Overview
+
+The `--rm` option in Docker is **not a restart policy**.
+
+It is used to **automatically remove the container when it stops or
+exits**.\
+This helps keep the system clean by preventing unused stopped containers
+from accumulating.
+
+------------------------------------------------------------------------
+
+## Key Behaviour
+
+-   The container is **automatically deleted when it stops**
+-   It **does not restart the container**
+-   It is commonly used for **temporary or testing containers**
+-   Once the container exits, it **cannot be started again because it is
+    removed**
+
+------------------------------------------------------------------------
+
+## Syntax
+
+``` bash
+docker run <options> --rm <image>:<tag>
+```
+
+Example:
+
+``` bash
+docker run -itd --rm --name=demoapp nginx
+```
+
+------------------------------------------------------------------------
+
+## Practical Demonstration
+
+### Pull Image
+
+``` bash
+docker pull nginx
+```
+
+### Verify Images
+
+``` bash
+docker images
+```
+
+### Run Container with `--rm`
+
+``` bash
+docker run -itd --rm --name=demoapp nginx
+```
+
+### Verify Restart Policy
+
+``` bash
+docker inspect demoapp | grep -iA 3 restartpolicy
+```
+
+Output:
+
+    "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+    }
+
+This confirms that `--rm` **does not set a restart policy**.
+
+------------------------------------------------------------------------
+
+## Check Container Status
+
+``` bash
+docker ps -a
+```
+
+    -----------(The Status is UP)-------------
+
+------------------------------------------------------------------------
+
+## Restart Docker
+
+``` bash
+systemctl restart docker
+```
+
+Check again:
+
+    -----------(The Status is Exited)-------------
+
+Since the container stops, Docker **automatically removes it** because
+of the `--rm` option.
+
+------------------------------------------------------------------------
+
+## Conclusion
+
+`--rm` is **not a restart policy**.
+
+It is simply a **cleanup option** that automatically removes the
+container after it stops.\
+This is useful for **temporary containers, testing, and short-lived
+tasks**.
