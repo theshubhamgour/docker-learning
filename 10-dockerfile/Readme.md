@@ -13,7 +13,7 @@
 
 ---
 
-## Part 1: Beginner-Friendly Demos (No Code Needed)
+## Part 1: Beginner Demo (No Code Needed)
 
 If you don’t have any app code, you can still demonstrate `Dockerfile` vs `docker run` easily.
 
