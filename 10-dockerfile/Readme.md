@@ -80,3 +80,11 @@ docker run -d -p 8080:80 my-html-site
 
 ---
 
+## Common Dockerfile Instructions Explained
+
+Here are the most frequently used instructions when writing a Dockerfile:
+
+* **`FROM`**: Defines the base image for your container. It is always the starting point of any Dockerfile (e.g., `FROM node:18-alpine`, `FROM ubuntu:latest`). Think of it as the foundation of your building.
+* **`WORKDIR`**: Sets the working directory inside the container for any subsequent `RUN`, `CMD`, `COPY`, or `ADD` instructions. It is exactly like running the `cd` command in a terminal. (e.g., `WORKDIR /app`)
+* **`COPY`**: Copies files and directories from your local computer into the container's filesystem. (e.g., `COPY package.json .` or `COPY index.html /usr/share/nginx/html`).
+* **`RUN`**: Executes commands inside the container *during the build process*. This is typically used to install dependencies or set up environments. (e.g., `RUN npm install` or `RUN apt-get update`).
