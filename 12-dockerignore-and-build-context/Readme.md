@@ -248,41 +248,6 @@ CMD ["python", "app.py"]
 
 `.dockerignore` patterns are case-sensitive on Linux but case-insensitive on Windows/Mac.
 
-## Advanced Usage
-
-### Using .dockerignore with Docker Compose
-
-```yaml
-# docker-compose.yml
-version: '3.8'
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      # .dockerignore is automatically used
-```
-
-### Build Context from Different Directory
-
-```bash
-# Build from parent directory
-docker build -f app/Dockerfile -t myapp .
-
-# With .dockerignore in app/
-echo "node_modules" > app/.dockerignore
-```
-
-### Debugging Build Context
-
-```bash
-# See what files are sent
-DOCKER_BUILDKIT=1 docker build --progress=plain -t debug .
-
-# Or use dive to analyze image layers
-dive myapp
-```
-
 ## Summary
 
 - **Build context** = files sent to Docker daemon
