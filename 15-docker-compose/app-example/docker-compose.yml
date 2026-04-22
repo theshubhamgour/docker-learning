@@ -1,0 +1,8 @@
+services:
+ app:
+  build: .
+  ports:
+   - "5002:5002"
+  environment:
+   ENV: production
+

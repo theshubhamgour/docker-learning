@@ -1,0 +1,11 @@
+services:
+ db:
+  image: mysql:8
+  volumes:
+   - mysql_data:/var/lib/mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: password
+
+volumes:
+ mysql_data:
+  external: true
